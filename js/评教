@@ -1,0 +1,102 @@
+
+
+
+JavaScript:(function(){
+
+	iframeFirst= document.getElementById("iframeautoheight");
+innerDocFirst = iframeFirst.contentDocument||iframe.contentWindow.document;
+pjkc_count=innerDocFirst.getElementsByName("pjkc")[0].options.length;
+getRadom =function (){
+var num = Math.ceil(Math.random()*2);
+if(num==0){
+num+=1;
+}
+return num;
+}
+select_data= function(){
+iframe= document.getElementById("iframeautoheight");
+innerDoc = iframe.contentDocument||iframe.contentWindow.document;
+node_count = innerDoc.getElementsByClassName("FFF").length;
+for(var i=2;i<=node_count+1;i++){
+	op = innerDoc.getElementById("DataGrid1"+"__ctl"+i+"_JS1");
+op.options[getRadom()].selected=true;
+}
+innerDoc.getElementById("Button1").click();	
+}
+for(var kc_increase=1;kc_increase<=pjkc_count;kc_increase++){
+console.log(kc_increase*3000);
+setTimeout(select_data,kc_increase*3000);
+}
+
+})();
+
+
+
+
+
+
+var iframeFirst= document.getElementById("iframeautoheight");
+var innerDocFirst = iframeFirst.contentDocument||iframe.contentWindow.document;
+var pjkc_count=innerDocFirst.getElementsByName("pjkc")[0].options.length;
+var count=0;
+var getRadom =function (){
+var num = Math.ceil(Math.random()*2);
+if(num==0){
+num+=1;
+}
+return num;
+}
+var select_data= function(){
+	count++;
+var iframe= document.getElementById("iframeautoheight");
+var innerDoc = iframe.contentDocument||iframe.contentWindow.document;
+var node_count = innerDoc.getElementsByClassName("FFF").length;
+for(var i=2;i<=node_count+1;i++){
+	var op = innerDoc.getElementById("DataGrid1"+"__ctl"+i+"_JS1");
+op.options[getRadom()].selected=true;
+}
+innerDoc.getElementById("Button1").click();	
+	if(pjkc_count==count){
+	innerDoc.getElementById("Button2").click();
+	}
+}
+for(var kc_increase=1;kc_increase<=pjkc_count;kc_increase++){
+//console.log(kc_increase*3000);
+setTimeout(select_data,kc_increase*3000);
+}
+console.log("by ye");
+console.log("http://weibo.com/3118370293");
+console.log("http://space.bilibili.com/1610118/#!/");
+
+
+压缩后
+
+
+
+
+
+
+var fun=function(){
+//计算节点
+node_count = document.getElementsByClassName("FFF").length;
+for(var i=1;i<=node_count;i++){
+op = document.getElementById("DataGrid"+kc_increase+"__ctl"+i+"_JS"+kc_increase);
+// 1是优秀 2 良好
+op.options[getRadom()].selected=true;
+}
+}
+
+
+iframe= document.getElementById("iframeautoheight");
+innerDoc = iframe.contentDocument||iframe.contentWindow.document;
+innerDoc.getElementById("Button1");
+
+var se=function(j){
+console.log(j);
+}
+for(var i=1;i<5;i++){
+	console.log(i*3000);
+	setTimeout(se(i),i*3000);
+}
+
+//完成评价

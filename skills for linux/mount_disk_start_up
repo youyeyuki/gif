@@ -1,0 +1,11 @@
+# Please using root User execute.
+
+blkid 
+
+# find uid like this dev/sda12: LABEL="data" UUID="10DC124C10DC124C" TYPE="ntfs" PARTUUID="df953210-0c"
+
+# mkdir path dirs you want to mount like /mnt/data
+mkdir /mnt/data
+#nano /etc/fstab  add line like below
+UUID=10DC124C10DC124C /mnt/data ntfs-3g  default 0 0
+# save and restart if you disk can not write maybe you win10 has sleep fuction,please close it completely.
