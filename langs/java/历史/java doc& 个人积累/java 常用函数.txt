@@ -1,0 +1,20 @@
+String.valueOf();
+
+
+(int)Math.pow(single, 3) 
+
+占位符  %02d %single
+
+
+
+
+格式化输出
+String value = MessageFormat.format(message, array);  
+  
+System.out.println(value);  
+
+----------------
+MessageFormat.format("{0}","diyige "); 
+
+String s = String.format(DML, data);
+

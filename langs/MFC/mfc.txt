@@ -1,0 +1,129 @@
+
+莜叶_   1306118@@@  http://www.tantan123.com/  xnx7451
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void CMFCsystemDlg::OnBnClickedButton1()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdio.h>
+	system("calc");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton2()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdio.h>
+	system("\"D:\\Program Files (x86)\\Winamp\\winamp.exe\"");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton3()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdio.h>//0代表系统弹出，对话框内容，对话框标题，代表对话框的类型0
+	MessageBoxA(0, "你正在关闭程序是否继续", "友情提示", 0);
+	system("taskkill /f /im qq.exe");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton4()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdlib.h>
+	system("ipconfig&pause");
+	
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton5()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdlib.h>
+	system("tasklist > D:\\tasklist.txt");
+	system("D:\\tasklist.txt");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton6()
+{
+	// TODO:  在此添加控件通知处理程序代码 map映射 地图
+#include<stdlib.h>
+	system("charmap");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton7()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdlib.h>
+	system("comexp.msc");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton9()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdlib.h>
+	system("dxdiag");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton10()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdlib.h>
+	system("eventvwr");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton11()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdlib.h>
+	system("explorer.exe D:\\");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton12()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdlib.h>
+	system("iexpress");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton13()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdlib.h>
+	system("netstat -an &pause");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton14()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include<stdlib.h>
+	system("psr");
+}
+
+
+void CMFCsystemDlg::OnBnClickedButton15()
+{
+	// TODO:  在此添加控件通知处理程序代码
+#include <stdlib.h>
+	system("route print&pause");
+}

@@ -1,0 +1,21 @@
+http是无状态协议 完成连接后就会断开连接
+再次交换就要新建连接 无法跟踪会话
+http://blog.csdn.net/fangaoxin/article/details/6952954
+
+register
+$_Salt ="&^rr555";
+username SHA1(password+$_Salt)
+
+login
+
+username = username  正则检查password  $_Salt  SHA1
+
+成功 cookies 写入数据库 username+date SHA1 date username
+
+    cookies 与 username 检索数据库查询数据 cookie与username相等
+
+
+
+
+//接下来要在其他实现  现阶段还是进行数据库连接搜索
+set seesion 不存在验证数据库

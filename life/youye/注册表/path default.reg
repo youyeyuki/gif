@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion]
+
+"CommonFilesDir"="C:\Program Files\Common Files"
+
+"CommonFilesDir (x86)"="C:\Program Files (x86)\Common Files"

@@ -1,0 +1,78 @@
+A Chrome App contains these components:
+
+The manifest tells Chrome about your app, what it is, how to launch it and the extra permissions that it requires.
+The background script is used to create the event page responsible(责任) for managing the app life cycle.
+All code must be included in the Chrome App package. This includes HTML, JS, CSS and Native Client modules.
+All icons and other assets(资源) must be included in the package as well.
+
+manifest(清单)文件告诉chrome 你的app是什么 如何去运行她和她所需要额外的权限是什么
+background script 经常用于创建活动页面并有管理app生命周期的能力
+全部的代码必须包在chrome 应用包中(就是一个目录下面的文件打包 = =) 包括HTML, JS, CSS和本地的一些模块(应该是指c等扩展模块)
+所有的图标和其他的资源必须包括这个包里面(就是放在同一目录下的意思啦啦啦啦啦啦)
+
+#Chrome Apps Architecture
+Chrome Apps integrate closely(与什么紧密联系) with a user’s operating system. 
+The app container describes the visual appearance and loading behavior(登录行为) of Chrome Apps.
+Chrome Apps look different than traditional web apps(看起来不同于传统应用) because the app container 
+does not show  any traditional web pag eUI controls;（不显示任何传统的网页UI控件） it simply contains a blank rectangular area（简单包含一个矩形的区域）.
+This allows an app to blend with “native” apps on the system, （他允许应用与系统的应用融合）
+and it prevents the user from “messing” with the app logic by manually changing the URL.
+通过手动改变url 防止了用户和原生系统的混乱
+
+
+The app runtime loads the event page from a user's desktop and the onLaunch() event is fired（被触发）. 
+This event tells the event page what windows to launch and their dimensions. 
+The lifecycle diagram here isn't the nicest to look at, but it's practical (and we will make it nicer soon).
+
+应用系统运行时候从用户的左面加载活动页面并执行onLaunch()触发
+
+Create event page and windows
+Create event pag
+创建活动时候把js添加到mainfest文件中
+"background": {
+  "scripts": [
+    "foo.js",
+    "background.js"
+  ]
+}
+
+
+https://developer.chrome.com/apps/contentSecurityPolicy
+The content security policy for Chrome Apps restricts（限制） you from doing the following:
+安全策略内容限制你在chrome下做以下事情
+You can’t use inline scripting in your Chrome App pages. The restriction bans both <script> blocks and event handlers (<button onclick="...">).
+You can’t reference any external resources in any of your app files (except for video and audio resources). You can’t embed external resources in an iframe.
+You can’t use string-to-JavaScript methods like eval() and new Function().
+
+
+怎么遵守csp 策略How to comply with CSP
+使用templating libraries
+利用sandbox隔离里面的内容
+Access remote resources 
+通过xml requests You can fetch remote resources via XMLHttpRequest and serve them via blob:, data:, or filesystem: URLs
+嵌入网页内容Embed web content   Instead of using an iframe, you can call out to an external URL using a webview tag
+
+codelab 环境搭建
+
+How to implement（实现） alarms and notifications  怎么实现响铃和提示
+https://developer.chrome.com/apps/app_codelab_alarms
+
+
+How to display web pages inline 怎么展示网页内嵌
+https://developer.chrome.com/apps/app_codelab_webview
+
+How to load resources (like images) from external sources 如何加载本地资源 
+https://developer.chrome.com/apps/app_codelab_images
+
+How to write to a file in the native filesystem 如何写文件到本地系统
+https://developer.chrome.com/apps/app_codelab_filesystem
+
+How to publish your app to the Chrome Web Store 如何发布你的应用到 应用商场
+https://developer.chrome.com/apps/app_codelab_filesystem
+
+
+To prepare for this codelab:
+
+Use the latest version of Google Chrome.
+Start fresh（重新开始） in an empty project directory on your development computer.
+Download the reference code for all steps or view them on Github in case you get stuck.

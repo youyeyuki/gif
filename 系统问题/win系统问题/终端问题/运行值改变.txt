@@ -1,0 +1,6 @@
+Start -> Run -> regedit
+Go to [HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\Autorun]
+Change the value to chcp 65001‘’
+
+
+新建了Autorun 添加了chcp65001

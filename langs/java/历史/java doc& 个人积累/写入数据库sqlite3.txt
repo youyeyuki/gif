@@ -1,0 +1,23 @@
+http://www.runoob.com/sqlite/sqlite-java.html
+
+
+mysql数据库操作
+    private static final String driver="com.mysql.jdbc.Driver";  //驱动包名称
+    private static final String url="jdbc:my sql://localhost:3306/webtest"; //选地址和数据库
+    private static final String user="root";  //用户名称
+    private static final String password="123456"; //用户密码
+	
+	
+	 Class.forName(driver); //加载mysql驱动
+	 Connection con= DriverManager.getConnection(url, user, password); //连接数据库并且选择数据库 注意这导入的是
+	 Statement state=con.createStatement(); //创建statemnet接口相当于游标                                                                      //import java.sql.Connection;
+	 String sql="select * from tb_user";
+	 ResultSet rs=state.executeQuery(sql);//结果放在rs集合中															//import java.sql.DriverManager;
+	 while(rs.next()){
+	  System.out.println(rs.getString(2));//6.通过while循环输出表的第二列的所有记录
+	 }																		//import java.sql.ResultSet;
+																			//import java.sql.Statement;
+																			
+//提高 转化为json数据
+sql参数化过滤sql语句
+																			

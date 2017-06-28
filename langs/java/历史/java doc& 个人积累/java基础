@@ -1,0 +1,8 @@
+类的三大特征 封装 继承 多态(重写和重载)
+
+接口定义 接口实现 接口不能实例化 接口可以多继承 java 只能extendds 一个 但是这个接口不同
+
+
+
+JDK 
+  String StringBuffer

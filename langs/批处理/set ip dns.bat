@@ -1,0 +1,1 @@
+netsh interface ip set dns "无线网络连接" static 127.0.0.1

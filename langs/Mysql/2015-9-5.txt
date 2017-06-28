@@ -1,0 +1,25 @@
+2015-9-5 
+
+整理
+sql密码忘记跳权限登录
+停止mysql安全模式启动 mysqld-nt.exe --skip-grant-tables
+
+修改密码
+>use mysql;
+>update user set password=password(“new_passwd”) where user=”root”;
+>flush privileges;
+
+or
+SET PASSWORD FOR   username=PASSWORD('new password');
+
+
+ALTER TABLE 修改 添加|删除 列、修改列定义、添加后取出约束 某些情况可以修改 storage 值
+
+alter table table_name [modify] [colum column_name][datatype|null not]
+
+alter table [table_name] [datatype];
+
+添加自动增加的列 serial
+create table [table_name] (
+              id  serial,
+              name  varchar(20)); 

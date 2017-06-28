@@ -1,0 +1,18 @@
+this.currVideoObj = {
+"videoId":"1102",
+"serieId":"400000008",
+"seriNum":0,
+"indexAt":0,
+"title":"",
+"dftLineIndex":0,
+"getVideoUrl":"http://tsk.erya100.com/player/playerAction!getVideoUrl?videoId=1684&courseId=TS002&seriNum=1",
+"subtitleUrl":"http://mc.erya100.com/videoServer/videoServiceAction!getvideoSubtitleUrl?videoId=980042",
+"previewUrl":"http://s1.ananas.chaoxing.com/video/33/52c7ba9da31052642b61690a/snapshot.jpg",
+"resourceUrl":"",
+"viewPicUrl":"http://mooc.chaoxing.com/richvideo/viewpic?url=http://s1.ananas.chaoxing.com/video/ec/5243a2e65370f687d061ea93/thumbnails/",
+"pointListUrl":"http://video.chaoxing.com/getVideoPoints_93632.json",
+"playListUrl":"http://video.chaoxing.com/ajax/getvideolistinfo_400052474_170196.shtml?&pageNo=1&pageSize=10",
+"relatListUrl":"",
+"resourcePlugUrl":"datas/assets/ResourcePlug.swf",
+"data":{}
+};

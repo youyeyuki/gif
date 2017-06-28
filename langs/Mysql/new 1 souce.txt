@@ -1,0 +1,51 @@
+﻿use youye;
+create table msg
+( id int ,
+  title varchar(60) NULL,
+  name varchar(10)  NULL,
+  content varchar(1000));
+
+ insert into  msg(id ,title ,name ,content) values(140510010,'第一条','= =','你好！');
+ 
+ update msg  set id=2, content='内容' 
+ where name='筱';
+ 
+insert into  msg(id ,title ,name ,content) values(3,'题目三','yuki','世界世界！'),(4,'huri','题目数据',"漏了");
+ 
+ insert into  msg(id ,title ,name ,content) values(5,'题目sdf','ydd','2333'),(88,'hurikiti','题目dfs数据',"漏sfsf了");
+
+
+mysql> alter table msg modify
+    -> id varchar(10)
+    -> ;
+
+
+create table msg_tmp as select * from msg;
+
+
+drop table auto;
+
+
+mysql> alter table msg
+    -> add constraint msg_p primary key (id,name);
+
+
+mysql> update msg
+    -> set id = 2333
+    -> where name="= =";
+
+mysql> delete from msg
+    -> where id="2333";
+Query OK, 1 row affected (0.05 sec)
+
+
+alter table [tablename]  add [field_name] [field_type];
+
+alter table msg
+add column 'date' DATE NULL AFTER 'size',
+add column  time  time NULL AFTER 'date';
+
+create table msg
+( chtime DATETIME,
+  nick CHAR(10) NOT NULL,
+  words CHAR(150)); 

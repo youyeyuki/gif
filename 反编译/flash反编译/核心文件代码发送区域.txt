@@ -1,0 +1,422 @@
+package com.chaoxing.player.comp
+{
+   import flash.display.Sprite;
+   import com.chaoxing.player.core.Player;
+   import flash.external.ExternalInterface;
+   import com.chaoxing.player.util.LogUtil;
+   import com.chaoxing.player.util.MD5;
+   import flash.utils.clearTimeout;
+   import flash.utils.setTimeout;
+   
+   public class ExternalComp extends Sprite
+   {
+       
+      private var _player:Player;
+      
+      private var setIntId:int;
+      
+      public function ExternalComp()
+      {
+         super();
+      }
+      
+      public function setPlayer(player:Player) : void
+      {
+         this._player = player;
+      }
+      
+      public function addCallBackFunc() : void
+      {
+         try
+         {
+            if(ExternalInterface.available)
+            {
+               ExternalInterface.addCallback("goPlay",this.goPlay);
+               ExternalInterface.addCallback("goPlayForUrls",this.goPlayForUrls);
+               ExternalInterface.addCallback("pauseMovie",this.pauseMovie);
+               ExternalInterface.addCallback("playMovie",this.play);
+               ExternalInterface.addCallback("fastFor",this.fastFor);
+               ExternalInterface.addCallback("addVolNum",this.addVolNum);
+               ExternalInterface.addCallback("turnOff",this.turnOff);
+               ExternalInterface.addCallback("reloadPlayList",this.reloadPlayList);
+               ExternalInterface.addCallback("getPlayList",this.getPlayList);
+               ExternalInterface.addCallback("getPlaySecond",this.getPlaySecond);
+               ExternalInterface.addCallback("getPlaySize",this.getPlaySize);
+               ExternalInterface.addCallback("getTotalSecond",this.getTotalSecond);
+               ExternalInterface.addCallback("setSubtitle",this.setSubtitle);
+               ExternalInterface.addCallback("sendProgress",this.sendProgress);
+               ExternalInterface.addCallback("refreshSkin",this.refreshSkin);
+               ExternalInterface.addCallback("getPlayState",this.getPlayState);
+               LogUtil.info(this,false,"初始化对外接口！",null);
+            }
+         }
+         catch(err:Error)
+         {
+            trace("错误: " + err.message);
+         }
+      }
+      
+      public function debug(msg:Object) : void
+      {
+         try
+         {
+            if(ExternalInterface.available)
+            {
+               ExternalInterface.call("alert",msg);
+            }
+         }
+         catch(err:Error)
+         {
+            trace("错误: " + err.message);
+         }
+      }
+      
+      public function onInitComplete() : void
+      {
+         this.jQuery("onInitComplete");
+      }
+      
+      public function onPlayProgress(proTime:Number, proSize:Number, data:Object, logdata:Object) : void
+      {
+         this.jQuery("onPlayProgress",proTime,proSize,data,this._player.getCtrller().genEnc());
+         if(this.getPlayState() != 2)
+         {
+            this.onSendlog(logdata,0);
+         }
+      }
+      
+      public function onGoPlay(index:int, data:Object) : void
+      {
+         this.jQuery("onGoPlay",index,data,this._player.getCtrller().genEnc());
+      }
+      
+      public function onNext(index:int, data:Object) : void
+      {
+         this.jQuery("onNext",index,data,this._player.getCtrller().genEnc());
+      }
+      
+      public function onPrev(index:int, data:Object) : void
+      {
+         this.jQuery("onPrev",index,data,this._player.getCtrller().genEnc());
+      }
+      
+      public function onGoPlayClick(index:int, data:Object) : void
+      {
+         this.jQuery("onGoPlayClick",index,data,this._player.getCtrller().genEnc());
+      }
+      
+      public function onTurnOff(isOff:Boolean) : void
+      {
+         this.jQuery("onTurnOff",isOff);
+      }
+      
+      public function onShare(num:int, data:Object) : void
+      {
+         this.jQuery("onShare",num,data);
+      }
+      
+      public function onDownload() : Boolean
+      {
+         this.jQuery("onDownload");
+         return false;
+      }
+      
+      public function onRightIconClick(data:Object) : void
+      {
+         this.jQuery("onRightIconClick",data);
+      }
+      
+      public function onMovieDrag(startTime:Number, endTime:Number, data:Object, logdata:Object) : void
+      {
+         var key:String = null;
+         var enc:String = null;
+         this.jQuery("onMovieDrag",startTime,endTime,data);
+      }
+      
+      public function onError(data:Array) : void
+      {
+         this.jQuery("onError",data);
+      }
+      
+      public function onNotVideoUrl(serieId:String, videoId:String, data:String) : void
+      {
+         this.jQuery("onNotVideoUrl",serieId,videoId,data);
+      }
+      
+      public function onChangeLine(lineIndex:int) : void
+      {
+         this.jQuery("onChangeLine",lineIndex);
+      }
+      
+      public function onPointStart(data:Object) : void
+      {
+         this.jQuery("onPointStart",data,this._player.getCtrller().genEnc());
+      }
+      
+      public function onPointEnd(data:Object) : void
+      {
+         this.jQuery("onPointEnd",data,this._player.getCtrller().genEnc());
+      }
+      
+      public function onStart(index:int, data:Object, logdata:Object) : void
+      {
+         this.jQuery("onStart",index,data);
+         this.onSendlog(logdata,3);
+      }
+      
+      public function onSendlog(logdata:Object, isdrag:int) : void
+      {
+         var key:* = null;
+         var n:int = 0;
+         var enc:String = null;
+         if(logdata.isSendLog != "1")
+         {
+            return;
+         }
+         var url:String = "";
+         var isSendLog:String = "";
+         for(key in logdata)
+         {
+            if(key == "isSendLog")
+            {
+               isSendLog = logdata[key];
+            }
+            else if(key != "dtoken")
+            {
+               url = url + ("&" + key + "=" + logdata[key]);
+            }
+         }
+         n = this.getPlaySecond();
+         url = url + "&view=pc&playingTime=" + n;
+         url = url + "&isdrag=" + isdrag;
+         enc = MD5.startMd("[" + logdata.clazzId + "]" + "[" + logdata.userid + "]" + "[" + logdata.jobid + "]" + "[" + logdata.objectId + "]" + "[" + n * 1000 + "]" + "[d_yHJ!$pdA~5]" + "[" + int(logdata.duration) * 1000 + "]" + "[" + logdata.clipTime + "]");
+         url = url + "&enc=" + enc;
+         url = url.substring(1);
+         if(isSendLog == "1")
+         {
+            this.jQuery("logFunc",url);
+         }
+      }
+      
+      public function onEnd(index:int, data:Object, enc:String, logdata:Object) : void
+      {
+         this.jQuery("onEnd",index,data,enc);
+         this.onSendlog(logdata,4);
+      }
+      
+      public function onAnswerRight(data:Object) : void
+      {
+         this.jQuery("onAnswerRight",data);
+      }
+      
+      public function onAnswerWrong(data:Object) : void
+      {
+         this.jQuery("onAnswerWrong",data);
+      }
+      
+      public function onUnlock(index:int, data:Object) : void
+      {
+         this.jQuery("onUnlock",index,data);
+      }
+      
+      public function onPlay(proTime:Number, logdata:Object) : void
+      {
+         this.jQuery("onPlay",proTime);
+         this.onSendlog(logdata,3);
+      }
+      
+      public function onPause(proTime:Number, logdata:Object) : void
+      {
+         this.jQuery("onPause",proTime);
+      }
+      
+      public function onFullScreen() : void
+      {
+         this.jQuery("onFullScreen");
+      }
+      
+      public function onNormalScreen() : void
+      {
+         this.jQuery("onNormalScreen");
+      }
+      
+      public function onOpenResource(data:Object) : void
+      {
+         this.jQuery("onOpenResource",data);
+      }
+      
+      private function goPlayForUrls(videoUrls:Array) : void
+      {
+         this._player.getCtrller().goPlayForUrls(videoUrls);
+      }
+      
+      private function goPlay(index:int, toTime:Number) : void
+      {
+         this._player.getCtrller().goPlay(index,toTime);
+      }
+      
+      private function getPlaySecond() : Number
+      {
+         return this._player.getCtrller().getPlaySecond();
+      }
+      
+      private function getPlaySize() : Number
+      {
+         return this._player.getCtrller().getPlaySize();
+      }
+      
+      private function getTotalSecond() : Number
+      {
+         return this._player.getCtrller().getTotalSecond();
+      }
+      
+      private function play() : void
+      {
+         clearTimeout(this.setIntId);
+         this.setIntId = setTimeout(this.playMovie,600);
+      }
+      
+      private function playMovie() : void
+      {
+         if(Boolean(this._player.getConfig().ending) || Boolean(this._player.getConfig().movieState == Consts.MOVIE_ISPLAYING))
+         {
+            return;
+         }
+         if(this._player.getChildByName("resQuizComp") != null)
+         {
+            LogUtil.info(this,false,"因为考试资源框resQuizComp存在，不能调用该方法！",null);
+            return;
+         }
+         if(this._player.getChildByName("resourcePlugComp") != null)
+         {
+            LogUtil.info(this,false,"因为考试资源框resourcePlugComp存在，不能调用该方法！",null);
+            return;
+         }
+         if(this._player.getConfig().proTime < 1)
+         {
+            return;
+         }
+         this._player.getCtrller().playMovie();
+         this._player.getSkin().bottomComp.playPauseBtn.changeBtnState(Consts.MOVIE_ISPAUSE);
+         this._player.getSkin().bigPlayBtn.hide();
+      }
+      
+      private function pauseMovie() : void
+      {
+         if(Boolean(this._player.getConfig().ending) || Boolean(this._player.getConfig().movieState == Consts.MOVIE_ISPAUSE))
+         {
+            return;
+         }
+         if(this._player.getConfig().proTime < 1)
+         {
+            return;
+         }
+         this._player.getCtrller().pauseMovie();
+         this._player.getSkin().bottomComp.playPauseBtn.changeBtnState(Consts.MOVIE_ISPLAYING);
+         this._player.getSkin().bigPlayBtn.show();
+      }
+      
+      private function fastFor(isFor:Boolean, stepNum:Number = -1) : void
+      {
+         this._player.getCtrller().fastFor(isFor,stepNum);
+      }
+      
+      private function addVolNum(isAdd:Boolean) : void
+      {
+         this._player.getCtrller().addVolNum(isAdd);
+      }
+      
+      private function setSubtitle(str:String) : void
+      {
+         this._player.getCtrller().reLoadSubtitleContent(str);
+      }
+      
+      private function turnOff(isOff:Boolean) : void
+      {
+         try
+         {
+            this._player.getCommomEvents().turnOff(isOff);
+         }
+         catch(err:Error)
+         {
+            trace("错误: " + err.message);
+         }
+      }
+      
+      private function getPlayList() : Array
+      {
+         var o:* = null;
+         var info:Object = null;
+         var result:Array = new Array();
+         var arr:Array = this._player.getSkin().playListComp.getList();
+         for(o in arr)
+         {
+            info = new Object();
+            result.push(arr[o].data);
+         }
+         return result;
+      }
+      
+      private function reloadPlayList() : void
+      {
+      }
+      
+      private function sendProgress(url:String, param:Object, enc:String) : void
+      {
+         this._player.getCommomEvents().sendProgress(url,param,enc,function(data:*):*
+         {
+            jQuery("onSendProgressSuccess",data);
+         },function(data:*):*
+         {
+            jQuery("onSendProgressError",data);
+         });
+      }
+      
+      private function refreshSkin(config:Object) : void
+      {
+         try
+         {
+            this._player.getCommomEvents().refreshSkin(config);
+         }
+         catch(err:Error)
+         {
+            trace("错误: " + err.message);
+         }
+      }
+      
+      private function getPlayState() : Number
+      {
+         return this._player.getConfig().movieState;
+      }
+      
+      private function jQuery(eventName:String, ... args) : Object
+      {
+         var p:Function = function(s:String):String
+         {
+            return "(" + s + ")";
+         };
+         var q:Function = function(s:String):String
+         {
+            return "\"" + s + "\"";
+         };
+         LogUtil.info(this,false,"触发事件:" + eventName,null);
+         var list:Array = [q(eventName)];
+         if(args.length > 0)
+         {
+            list.push(JSON.stringify(args));
+         }
+         try
+         {
+            if(ExternalInterface.available)
+            {
+               return ExternalInterface.call(["jQuery" + p(q("#" + this._player.getConfig().id)),p(list.join(","))].join(".trigger"));
+            }
+         }
+         catch(err:Error)
+         {
+            trace("错误: " + err.message);
+         }
+         return null;
+      }
+   }
+}

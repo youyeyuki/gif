@@ -1,0 +1,170 @@
+http://www.cnblogs.com/lyhabc/p/3822267.html
+
+设置密码
+set password =password("password");
+
+DDL 数据定义语言 用来定义和管理数据对象 create drop alter
+create table
+alter table 
+drop table
+create index
+alter index
+drop index
+create view
+drop view
+DML 数据操作语言 用来操作数据库对象所包含的数据
+insert
+update
+delete
+
+DQL 数据查询语句  数据库查询语言
+select
+
+DCL 数据控制语句  用于管理表和权限
+alter password
+grant
+revoke
+create synonym
+
+
+
+
+数据管理命令
+start audit
+
+stop audit
+
+
+
+
+事务控制命令
+commit
+rollback
+savepoint
+set transaction
+
+
+内置系统函数
+日期函数 curdate()
+
+
+
+
+
+
+
+
+基本数据类型
+字符串类型
+数值类型
+日期和时间类型
+
+定长字符串 character(n)
+不足的用空格填充 保证字段的长度相同
+变长字符串
+character varying(n)
+
+http://www.jb51.net/article/55853.htm
+创建表
+ID 时间 日期 
+
+
+create table table_name(
+field1 data_type [not null]
+);
+
+库->表
+[]表示所要选的东西是什么
+show databases;
+use [databasename];
+
+create [database_name];
+
+drop database [databasename];
+
+create table [tablename](
+[filename1]  [data_type]  [not all ]
+[filename2]  [data_type]  [not all ]
+[filename3]  [data_type]  [not all ]
+);
+
+
+rename tables [oldtablename] to [neewtablename];
+
+drop table [tablename];
+
+desc  [tablename]; desc = description
+
+
+set names gbk;
+之后可以对 gbk的数据进行操作
+
+insert into [tablename]([filename1],[filename2],[filename3])
+values([data1],[data2],[data3])，([data4],[data5],[data6]);
+//使用char 带上 'data '
+
+
+select * from [tablename];
+
+
+
+ update [tablename] set [id=2, content='内容'] 
+ where [name='筱'];
+
+
+delete from [tablename]
+where [id =  2;];
+
+
+http://www.w3school.com.cn/sql/index.asp
+
+SET PASSWORD FOR   username=PASSWORD('new password');
+ 
+ALTER TABLE 修改 添加|删除 列、修改列定义、添加后取出约束 某些情况可以修改 storage 值
+
+alter table table_name [modify] [colun column_name][datatype|null not]
+
+alter table [table_name] [datatype];
+
+添加自动增加的列 serial
+create table [table_name] (
+              id  serial,
+              name  varchar(20)); 
+
+
+复制一个表 * 选定全部字段的数据 *表一行的完整数据
+create table msg_tmp as select * from msg;
+
+
+删除表                      限制   
+drop table [tables_name] [restrict|cascade];
+
+DROP user 'testUser'@'localhost';
+
+
+
+主键约束在定义创建表的时候加入 在字段列表的最后面 加上 primaty key;
+
+添加多个约束
+alter table [table_name] add constraint [filed_pk] primary key ([filed1],[fild2]) 
+
+mysql> alter table msg
+    -> add constraint msg_pk primary key (id,name);
+
+唯一约束
+
+
+
+更新数据update 
+update [table_name] 
+set [filed] = 1
+where [condition];
+update check_data set save="111" where id="1";
+
+删除一行
+delete from [table_name]
+where[condition]
+
+mysql> delete from msg
+    -> where id="2333";
+Query OK, 1 row affected (0.05 sec)

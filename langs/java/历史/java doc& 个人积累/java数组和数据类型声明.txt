@@ -1,0 +1,48 @@
+常用数据类型和声明
+int String double float
+char byte Integer
+
+static int = 5 ;//该变量在全局数据区分配内存 经常被声明为常量
+未经初始化的静态全局变量会被程序自动初始化为0
+在函数体内声明的自动变量的值是随机的，而在函数体外被声明的自动变量也会被初始化为0
+
+
+final  数据不能被修改 最终的
+
+
+声明数组    String week[];
+初始化空间  week = new int[7];
+
+arry.length 行 arry[0].length 列的个数
+
+
+dataType[] arrayRefVar; 
+数组声明 类型[] 变量名;
+也允许 dataType[] arrayRefVar; 类型 变量名[]; 不是首选方法
+
+定义数组 double[] ye = new double[10];
+
+
+创建时候赋值 double[] ye ={1,2,3,4,5,6,4};
+
+//创建多个二维数组
+double[][] ye = new double[1][1];
+
+
+
+首先要定义  分配空间 使用  记住浮点数要使用f
+ 
+float [][] ye;  //定义
+ye = new float[6][5]; //分配空间
+ye[1][0] = 2.255f; //使用
+
+
+
+
+###################################
+list  
+
+
+
+
+

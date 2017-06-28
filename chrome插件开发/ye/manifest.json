@@ -1,0 +1,20 @@
+{
+  "name": "莜叶工具",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "The first extension that I made.", // 注释
+  "browser_action": {
+    "default_icon": "icon.png",
+	 "default_popup": "popup.html",
+	 "default_title": "ye"
+  },
+  "permissions": [
+    "http://api.flickr.com/","storage", "alarms"
+  ],
+  "web_accessible_resources": [   //把资源加入whitelist
+    "images/my-awesome-image1.png",
+    "images/my-amazing-icon1.png",
+    "style/double-rainbow.css",
+    "script/double-rainbow.js"
+  ]
+}

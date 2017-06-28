@@ -1,0 +1,29 @@
+/*
+相关文件在FileProcessor 项目中
+1.首先要打开文件 FileInputStream fis
+2.读取放在数组input中
+3.因为读取到文件结尾的时候会退出 返回-1
+4.可以这样对文件进行复制 但是最好是使用buffer 缓冲区可以减少磁盘读写 增加其寿命还能加快速度
+5.while (fis.read(input) != -1) 判读是否-1 进行读写的写入写出 进行复制文件 还有有些文件一定要用Buffer才能完全复制
+
+
+
+
+BufferedInputStream 提高读取的速率 因为缓存区能减少IO的读取次数 提高磁盘利用率 同时提高了读取或是写入的速度
+FileInputStream fis = new FileInputStream("D://AndroidStudioProjects//Java//src//FileProcessor//★Nightcore - AM03_00 「Aimer」-54Pcjdsvni4.mp4");
+BufferedInputStream bis = new BufferedInputStream(fis,1000000);
+bis.read(input) //读取后返回的是读取的字节数目
+
+错误抛出 add throws declaration
+还有 add try catch 这两个有什么区别
+
+文件存不存在抛出
+throw new FileNotFoundException("File " + file + " does not exists!");
+
+throw new IOException("File "+ file +" cannot be read !");
+
+throw new IOException("File exists but " + file + " is a directory!");
+在Java中，抛出异常之后，如果不对异常进行处理，代码会一直往调用的上层抛，
+直到线程的执行器，如果在这里异常仍然未得到处理，线程将停止执行。
+所以抛出异常后如果不对异常进行处理，后面的代码将不会执行。
+*/

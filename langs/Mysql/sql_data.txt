@@ -1,0 +1,19 @@
+(
+`交易品种`  varchar(30) NOT NULL ,
+`交易单位`  varchar(100) NULL ,
+`报价单位`  varchar(100) NULL ,
+`最小变动价位`  varchar(100) NULL ,
+`涨跌停板幅度`  varchar(100) NULL ,
+`合约交割月份`  varchar(100) NULL ,
+`交易时间`  varchar(100) NULL ,
+`交割品级`  varchar(100) NULL ,
+`交割地点`  varchar(100) NULL ,
+`交易代码`  varchar(100) NULL ,
+`上市交易所`  varchar(100) NULL ,
+`附加信息`  varchar(100) NULL ,
+PRIMARY KEY (`交易品种`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_bin
+ROW_FORMAT=COMPACT
+;

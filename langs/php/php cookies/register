@@ -1,0 +1,18 @@
+userId自动增加
+
+前端验证
+nickName
+mail
+password
+
+
+
+nickName
+mail
+password
+
+提交时候提交password hash  mail nickName
+
+检查用户ID唯一性后 进行注册
+
+不唯一返回json 失败

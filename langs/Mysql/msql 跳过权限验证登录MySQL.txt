@@ -1,0 +1,16 @@
+跳过权限验证登录MySQL
+
+停止mysql安全模式启动 mysqld-nt.exe --skip-grant-tables
+
+
+Linux 
+/etc/init.d/mysql stop
+
+[root@www ~]# /usr/local/mysql/bin/mysqld_safe --skip-grant-tables
+
+
+ mysql -u root -p
+然后执行如下三条命令：
+>use mysql;
+>update user set password=password(“new_passwd”) where user=”root”;
+>flush privileges;

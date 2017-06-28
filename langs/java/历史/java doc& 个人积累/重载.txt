@@ -1,0 +1,6 @@
+什么是重载overloaded
+重载，简单说，就是函数或者方法有相同的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。
+对应的数据类型不同
+
+A(String name ,String address)
+A(String address,String name )  数据类型一样不能算重载

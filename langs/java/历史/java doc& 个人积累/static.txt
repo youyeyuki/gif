@@ -1,0 +1,2 @@
+static 内存分布  全局分配
+http://blog.csdn.net/jeffasd/article/details/51493597

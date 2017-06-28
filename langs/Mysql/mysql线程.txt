@@ -1,0 +1,7 @@
+SHOW PROCESSLIST; -- 显示哪些线程正在运行
+SHOW VARIABLES; -- 
+
+-- 查看当前数据库
+    select database();
+-- 显示当前时间、用户名、数据库版本
+    select now(), user(), version();

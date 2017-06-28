@@ -1,0 +1,8 @@
+This tutorial walks you through creating your first Chrome App. 
+walks you through 引导你完成
+
+Chrome Apps are structured similarly to extensions so current developers will recognize the manifest and packaging methods. 
+structured similarly to extensions 结构类似拓展(被动语态)  recognize 认识
+
+
+ Chrome App contains these components 组件

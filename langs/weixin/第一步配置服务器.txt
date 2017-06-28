@@ -1,0 +1,26 @@
+遇到的问题:
+
+
+1.了解 access_token  access_token在2小时内有效，过期需要重新获取，但1天内获取次数有限
+
+2.公众号内网页 可以获取用户的基本信息 获取用户的OpenID是无需用户同意的 个人基本信息需要
+
+3.微信JS-SDK  通过JavaScript代码使用微信原生功能的工具包 录制和播放微信语音、监听微信分享、上传手机本地图片、拍照等许多能力
+
+解决：
+token 是一个任意的字符串 提交后只有微信 和 server 知道
+微信发送给公众帐号的服务器的时候还会附带三个参数
+signature timestamp nonce 
+signature 是timestamp nonce token 进行sha1算法后的字符串 如果signature是一样的说明请求来自微信而不是其他第三方
+
+第三方可能会截取数据请求用来攻击服务器 可以对时间上的误差做对比 保证传送的安全
+
+
+微信接受用户 ->构造xml ->发送给服务器 -> 服务器返回 -> xml用户接收
+验证：
+
+验证服务器地址 GET请求携带四个参数signature 签名 timestamp 时间轴 nonce 随机数 echostr 随机字符串
+
+test token wexin2333
+
+微信全局返回码 http://mp.weixin.qq.com/wiki/10/6380dc743053a91c544ffd2b7c959166.html

@@ -1,0 +1,48 @@
+﻿status 
+
+ping 查看延迟
+
+z_spawn witch
+cl_showfps 1       屏幕显示fps数值和地图名称 
+
+net_graph 0,1,2,3       显示当前客户端参数如fps 网络连接 上传速度 下载速度和ping值 
+
+god 1     无敌
+buddha     打不死 
+noclip     穿墙   
+impulse 10     全部武器，子彈 
+give health     加满血 
+give ammo     加满弹夹
+
+sv_infinite_ammo 1     无限弹药不换弹夹
+
+give vomitjar     胆汁瓶
+
+
+
+
+give autoshotgun     1代的连发散弹枪
+
+give shotgun_spas     2代的连发散弹枪
+
+give pumpshotgun     1代的单发散弹枪
+
+give shotgun_chrome     2代的单发散弹枪
+
+give hunting_rifle     1代的连狙
+
+give sniper_military     2代的连狙
+
+give rifle     M16步枪
+
+give rifle_ak47     AK47步枪 
+
+give rifle_desert     SCAR步枪
+
+give smg     小型冲锋枪 
+
+give smg_silenced     消声器小型冲锋枪 
+
+give pistol 手枪 
+
+give pistol_magnum     玛格南手枪 

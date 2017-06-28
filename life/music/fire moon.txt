@@ -1,0 +1,22 @@
+do re mi fa so la si 
+1  2  3  4  5  6   7
+
+la++ mi++ re++ do++ si+ so+
+
+la+ mi++ re++ so+
+la- mi+  so    si
+
+do++ si+ so+ mi+
+
+fa-  do  so la mi+  so- re so la mi+ la- mi so la mi+  
+
+so+ la+ do+ re+ mi+ la+
+                fa-  do 
+
+
+
+
+
+
+ÃÏ÷Æ»ı
+ la la mi re mi re mi re mi #fa       re re mi re mi re mi mi mi #fa #fa re la la mi #fa

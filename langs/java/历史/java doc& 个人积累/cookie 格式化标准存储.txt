@@ -1,0 +1,6 @@
+CookieManager cookieManager = wc.getCookieManager();
+cookieManager.addCookie(cookie);
+
+//ÉèÖÃcookie
+CookieManager CM = webClient.getCookieManager();
+Set<Cookie> cookies_ret = CM.getCookies();

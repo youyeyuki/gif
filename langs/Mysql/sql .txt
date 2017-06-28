@@ -1,0 +1,11 @@
+显示当前进程用户
+show processlist;
+
+登录过多导致ip封锁刷新
+flush hosts;
+/* 去掉SAE实名认证提示 */
+div[style*="position:fixed;_position:absolute;top:0;left:0;right:0;padding:12px;background-color:rgba(0,0,0,0.5);filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7F000000,endcolorstr=#7F000000);color:#fff;text-align:center;font-size:16px;font-family:simsun,serif;cursor:default;z-index:2147483647;"] {display:none !important;}
+
+html 
+查看MYSQL数据库中所有用户
+SELECT DISTINCT CONCAT('User: ''',user,'''@''',host,''';') AS query FROM mysql.user;

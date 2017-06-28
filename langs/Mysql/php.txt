@@ -1,0 +1,6 @@
+create table msg
+( 
+chtime DATETIME,
+nick CHAR(10) NOT NULL,
+words CHAR(150)); 
+

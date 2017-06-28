@@ -1,0 +1,2 @@
+-- ×Ö·û¼¯
+        CHARSET = charset_name

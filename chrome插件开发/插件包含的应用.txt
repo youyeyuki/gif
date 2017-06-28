@@ -1,0 +1,88 @@
+基本组成:
+		一个mainfest 
+		一个 || 多个 html文件
+		同时 java文件
+		可选的文件
+应用基本环境：
+		放在一个目录下 发布的时候会打包
+		
+
+		
+http://crxdoczh.readthedocs.io/en/latest/0-start/overview.html
+
+
+XMLHttpRequest到JSON到HTML5	
+可以通过脚本内容或criss-origin xmlhttprequest 与服务器交换
+
+应用还可以访问浏览器内部的功能 应用或者是标签
+
+浏览行为可见
+页面行为不可见
+
+设置图标可以用http://crxdoczh.readthedocs.io/en/latest/1-guide/BrowserActions.html#seticon
+同样标题也可以setTitle http://crxdoczh.readthedocs.io/en/latest/1-guide/BrowserActions.html#settitle
+
+注意! 永久ID 等于扩展作品的电子身份证!
+但是! 如果从设计开发到发布到 Google 的 web store 中,整个过程中,如果我们从来没有使用内置的打包工具尝试打包,那么, 永久ID 将在 web store 平台中自动生成,且我们无法下载到本地!
+这样,就意识着,我们永远无法将扩展,放到其它网站中发布,除非先发布到 Google 的 web store
+所以! 建议一定要先在本地进行扩展的打包,并获得 .pem 后綴的 `永久ID`私钥!
+
+如果扩展或app需要在隐身浏览器里面开一个标签页，使用 split
+如果你的扩展或app需要登记录到远程服务器或者本地永久配置，用 spanning
+
+
+权限限制http://crxdoczh.readthedocs.io/en/latest/3-reference/ManifestFiles.html
+
+
+含有沙箱
+要在受沙箱保护的唯一来源中载入的页面路径（相对于扩展程序包根目录）列表，还可以指定可选的内容安全策略来一起使用。 在沙箱中意味着如下两点：
+
+受沙箱保护的页面不能访问扩展程序或应用程序API，也不能直接访问沙箱外的页面（但是可以通过postMessage()进行通信）。
+受沙箱保护的页面不受应用程序或扩展程序其余部分使用的 内容安全策略（CSP） 所限制。这就意味着，它可以使用内嵌脚本与 eval
+例如，如下代码指定两个扩展程序页面将在沙箱中载入，并指定了自定义的 CSP ：
+http://crxdoczh.readthedocs.io/en/latest/3-reference/CSP.html  重点 不能把js 放在popup.html里面
+"sandbox": {
+    "pages": [
+      "page1.html",
+      "directory/page2.html"
+    ]
+    // 内容安全策略是可选的。
+    "content_security_policy":
+        "sandbox allow-scripts; script-src https://www.google.com"
+  ],
+  
+  
+放宽默认策略 Relaxing the default policy?
+我们无法放宽限制，允许执行内嵌 JavaScript 代码。 特别地，设置包含 unsafe-inline 的脚本策略不会生效，这是有意为之。
+允许https页面 
+
+"content_security_policy": "script-src 'self' https://example.com; object-src 'self'",
+
+
+
+谷歌分析追踪应用
+http://crxdoczh.readthedocs.io/en/latest/2-tutorials/Analytics.html
+http://crxdoczh.readthedocs.io/user_builds/crxdoczh/rtd-builds/latest/_static/examples/tutorials/analytics/
+http://crxdoczh.readthedocs.io/en/latest/2-tutorials/debugging.html
+安装追踪代码 Installing the tracking code
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

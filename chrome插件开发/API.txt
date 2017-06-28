@@ -1,0 +1,5 @@
+一切基于js
+
+a[5].href 标签通过点直接访问属性值
+$('#loo').click();
+this.document.location = "http://stackoverflow.com/"

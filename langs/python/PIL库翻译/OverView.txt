@@ -1,0 +1,252 @@
+https://pillow.readthedocs.io/en/3.2.x/handbook/overview.html
+
+概括
+
+Python图像库添加了图像处理的功能给Python解析器
+
+它提供了额外(extensive)文件格式的支持 一个高效图像的表示（an efficient internal representation）和 相当强大的图像处理能力（fairly powerful image processing capabilities.）
+
+核心库被设计成快速访问由一些基本的像素格式构成的存储数据。 它为一般的图像处理工具提供了坚实的基础
+（It should provide a solid foundation for a general image processing tool.）
+让我们看看这些库可能的一些用途
+Let’s look at a few possible uses of this library.
+
+
+#Image Archives
+python图像库是理想（ideal）的图片文档和批处理应用程序。
+你可以使用库创建缩略图（thumbnails） 在两个文件格式中相互转换 打印图片出来等等
+
+#Image Display 图像展示
+
+当前的发型版本包括TK photoImage 和 BitmapImage 的接口 当然还有windowsDTB 接口用于windows上的python 和其他基于windows的工具包
+很多其他的一些gui工具也支持PIL
+
+为了调试 这里有show()方法 用于保存图片在硬盘上和调用外部显示的使用工具（and calls an external display utility.）
+
+#Image Processing
+
+这库包含基本的图像处理功能 包括点操作（ point operations 貌似是浮点运算） 
+filtering with a set of built-in convolution kernels, and colour space conversions.
+过滤一系列的点？？ 和色彩空间转换  前面不会翻译
+
+ 
+该库还支持图像大小调整 旋转 和仿射变换（#这个我也不太懂 wiki https://zh.wikipedia.org/zh/%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2） 
+The library also supports image resizing, rotation and arbitrary affine transforms.
+
+这里有个直方图方允许在图像外做一些统计（There’s a histogram method allowing you to pull some statistics out of an image. ）
+这可以应用于自动增强对比对和全球数据分析（This can be used for automatic contrast enhancement, and for global statistical analysis.）
+
+
+
+
+########################
+Tutorial 教程
+使用图像类
+
+Python 图像库最最要的类库是 Image 定义和模块的名字一样 
+你可以用多种方式创建这个类  或者从文件中加载图像过程或者从头开始创建图像（大概是说你能从没有图像创建一个图像出来的意思吧 creating images from scratch.）
+ You can create instances of this class in several ways   either by loading images from files, processing other images, or creating images from scratch.
+
+ 
+为了从文件加载图像 在Image模块中使用open()
+
+>>> from PIL import Image
+>>> im = Image.open("lena.ppm")
+
+如果加载成功 函数会返回一个Image 对象 之后你就能使用实例的属性(instance attributes )去检查文件的内容(examine the file contents)
+
+>>> from __future__ import print_function
+>>> print(im.format, im.size, im.mode)
+PPM (512, 512) RGB
+
+format属性 鉴定(identifies)是源图片的格式  如果图片不能从文件读取  它将会被设置为空(None)
+		   大小属性返回的是由宽度和高度组成的2元组(像素为单位)
+mode 属性定义了图像中的频带的数量和名称还有像素类型和深度
+     普通模式是"L"灰度图像（亮度），"RGB"真彩色图像，和"CMYK"为印刷四分色(这个好看 印刷用的)。(https://zh.wikipedia.org/wiki/%E5%8D%B0%E5%88%B7%E5%9B%9B%E5%88%86%E8%89%B2%E6%A8%A1%E5%BC%8F)
+
+如果文件不能打开 将会引发一个IOError异常 （If the file cannot be opened, an IOError exception is raised.）
+
+
+一旦你实例化了图像类 你就可以使用这个类所定义的方法来处理一张或者多张图片(you can use the methods defined by this class to process and manipulate the image.)
+例如我们可以这样展示图片
+>>> im.show()  # 这个会使用电脑默认的程序来打开图片的 intersting
+
+注意 标准版本中的show()并不是非常高效 因为他保存一个临时文件 然后通过图像工具打开它 如果你没有图像处理工具 那么它永远不会工作 
+当它工作时候都是方便与调试和测试
+When it does work though, it is very handy for debugging and tests.
+
+以下部分提供了在这个库中不同功能的概述(voerview 是概述的意思)
+
+#读取和写入图像
+Python图像库支持各种各样的图片文件格式  wide variety （广泛 品种多）
+打开文件通过open() 你不需要去知道文件的格式去打开他(应该是hex 检查头文件后打开) （automatically determines 自动确定  别怪我我在学英语）
+
+保存文件通过save()保存文件的时候后名字格外重要 除非您指定(specify)格式,否者该库会使用文件后缀名来作为存储格式
+from __future__ import print_function
+import os, sys
+from PIL import Image
+
+for infile in sys.argv[1:]: # 获取1以后的参数
+    f, e = os.path.splitext(infile) 
+    outfile = f + ".jpg"
+    if infile != outfile:
+        try:
+            Image.open(infile).save(outfile) # 文件转换
+        except IOError:
+            print("cannot convert", infile)
+ 
+第二个参数 那些明确了文件格式的能应用save()方法 如果你使用的不是标准的扩展non-standard extension 你必须要在使用之前转化它
+
+# 创建图片缩略图 thumbnails
+from __future__ import print_function
+import os, sys
+from PIL import Image
+
+size = (128, 128)
+
+for infile in sys.argv[1:]:
+    outfile = os.path.splitext(infile)[0] + ".thumbnail"
+    if infile != outfile:
+        try:
+            im = Image.open(infile)
+            im.thumbnail(size)
+            im.save(outfile, "JPEG")
+        except IOError:
+            print("cannot create thumbnail for", infile)
+			
+值得注意的是库没有解码或者栅格化的数据 除非他本来有?? 我也不懂什么意思
+当你打开文件的时候十六进制头信息决定了文件的格式和提取的模式 大小 还有其他的属性从文件中解码.但是该文件的其他部分不被处理知道最后 [也就是说这是隐写不给看咯]
+
+这意味着打开文件是一个  独立于文件大小压缩类型的 快速的操作 下面有一个简单的脚本来确定设置的文件格式 
+不是文件格式直接pass 我喜欢 
+from __future__ import print_function
+import sys
+from PIL import Image
+
+for infile in sys.argv[1:]:
+    try:
+        with Image.open(infile) as im:
+            print(infile, im.format, "%dx%d" % im.size, im.mode)
+    except IOError:
+        pass
+
+ #剪切 粘贴 和 合并图像(merging images)
+ 
+ 这个图像类允许你操作图像内的区域 (allowing you to manipulate regions within an image)[意思应该是去操作图像内的区域]
+ 通过使用crop()方法 从图像中提取出子矩形   To extract a sub-rectangle from an image [crop n种植 v修剪 region 区域]
+ box = (100, 100, 400, 400) # 划定区域  定义为四个元组  坐标分别为左边 上边 右边 下边 反正就是左边开始顺时针旋转   [坐标 coordinates are (left, upper, right, lower)]
+ region = im.crop(box)       # 
+
+该图像库使用的坐标是以左上为(0,0) 还要注意的是坐标的位置在像素之间 所以上面的例子提取出来的是300 X 300 pixels 的区域
+现在该区域可以用某种方式进行处理并粘贴 (The region could now be processed in a certain manner and pasted back.)
+
+处理子矩形和粘贴回去
+region = region.transpose(Image.ROTATE_180)
+im.paste(region, box)
+
+粘贴回去的时候区域必须和所给的区域大小一样 此外(In addition) 该区域不能向外延伸 然而事实上 这个区域不一定和原始的区域一样 如果不是一样的 它会在粘贴前自动转换 
+ 
+滚动图片
+def roll(image, delta):
+    "Roll an image sideways"
+
+    xsize, ysize = image.size
+
+    delta = delta % xsize
+    if delta == 0: return image
+
+    part1 = image.crop((0, 0, delta, ysize))
+    part2 = image.crop((delta, 0, xsize, ysize))
+    image.paste(part2, (0, 0, xsize-delta, ysize))
+    image.paste(part1, (xsize-delta, 0, xsize, ysize))
+
+    return image
+ 
+对于更高级的技巧(For more advanced tricks) 粘贴方法也能作为改变透明度的一个选项 (the paste method can also take a transparency mask as an optional argument)
+
+255指出要粘贴的图片子啊为那位置中是不透明的 0的值意思是粘贴的图片是完全透明的 completely transparent
+例如 粘贴一个RGBA 图片作为模版粘贴不透明的图片但是他的背景是透明的
+
+
+python图库允许你在一个多波段图像的各个波段工作individual bands of an multi-band image 例如在RGB图片中 split 方法创建了一套新的图像 每个图像包含原始多波段图像  
+merge function把他们元组 合并成一个图像
+
+Splitting and merging bands
+r, g, b = im.split()
+im = Image.merge("RGB", (b, g, r))
+
+Note that for a single-band image, split() returns the image itself. To work with individual color bands, you may want to convert the image to “RGB” first.
+如果你想在自己的独立色彩带工总你必须把他转换成RGB
+
+不翻译了
+
+PIL.Image.Image 包含 resize() rotate() 调整大小和旋转
+
+out = im.resize((128, 128))
+out = im.rotate(45) # degrees counter-clockwise
+
+能攻使用rotate() 或者是 transpose()方法 后者能够翻转围绕水平或者垂直方向的图像
+
+out = im.transpose(Image.FLIP_LEFT_RIGHT)
+out = im.transpose(Image.FLIP_TOP_BOTTOM)
+out = im.transpose(Image.ROTATE_90)
+out = im.transpose(Image.ROTATE_180)
+out = im.transpose(Image.ROTATE_270)
+
+通过convert()pixel representations  可以改变图像的像素表示方式
+
+im = Image.open("lena.ppm").convert("L") # 转化为灰度图片
+
+
+### Image enhancement 图像增强 这个对于验证码识别挺好的
+ a number of 若干个 
+python 图像库提供若干个方法和模块用于图像增强
+The Python Imaging Library provides a number of methods and modules that can be used to enhance images.
+
+Filters 过滤
+图像过滤模块包含若干预设增强过滤能用通过filter()方法使用他
+The ImageFilter module contains a number of pre-defined enhancement filters that can be used with the filter() method.
+
+应用过滤器
+from PIL import ImageFilter
+out = im.filter(ImageFilter.DETAIL)
+详细的参数https://pillow.readthedocs.io/en/3.2.x/reference/ImageFont.html
+
+
+Point Operations  浮点运算
+浮点运算可以用来把图片转化为像素点的值
+The point() method can be used to translate the pixel values of an image 
+
+https://pillow.readthedocs.io/en/3.2.x/handbook/tutorial.html#image-enhancement
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

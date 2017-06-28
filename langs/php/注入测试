@@ -1,0 +1,5 @@
+python sqlmap.py -u "127.0.0.1/php/android/login/register.php" --data "nick=aa&mail=123@qq.com&password=123" --parse-errors --eta --tamper=equaltolike  -v 1
+
+python sqlmap.py -r "127.0.0.1.txt"  --parse-errors --eta --tamper=equaltolike  -v 1
+
+
