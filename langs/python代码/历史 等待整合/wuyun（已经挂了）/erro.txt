@@ -1,0 +1,1 @@
+错误sql INSERT INTO `bugs` (`日期`, `标题`, `链接`, `评论`, `作者`) VALUES ('2012-04-26', '中国电信某分站上传漏洞', 'http://www.wooyun.org/bugs/wooyun-2012-06350', '0/2', 'icefis...') 第4443页 

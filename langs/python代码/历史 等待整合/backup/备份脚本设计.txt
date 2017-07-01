@@ -1,0 +1,74 @@
+
+1.把文件列表写入数据库 考虑到小型文件管理利用sqlite作为介质
+
+
+2.对数据库中的表进行设计
+   2.1 分为四个表 分别为backupdir sourcedir backupInfo sourceInfo 其中dir
+   用了存储文件的列表 用于替换操作前进行 文件夹的增加和删除 
+   Info 包含了文件相对路径和md5 
+
+2.先进行操作数据表进行设计对数据操作
+  2.1增加操作 （考虑数据库 还有 逻辑的先后设计 首先进行的删除文件夹操作）
+      新旧列表比较
+	   1.dir新列表有旧列列表没有的空项目     		用于增加文件目录操作
+	   2.backupInfo旧列表有新列表没有               用于删除文件操作
+	   3.dir旧列表有新列列表没有的空项目 			用于删除文件目录操作
+	   4.Info文件对比								用于文件的替换
+
+3.数据查询语句
+		增加提交
+		新增加的文件夹
+		SELECT sourcedir FROM sourcedir
+		EXCEPT
+		SELECT backupdir FROM backupdir
+		删除的文件
+		SELECT filename
+		FROM
+		backupInfo
+		EXCEPT
+		SELECT filename
+		FROM
+		sourceInfo
+
+
+
+		新增加的文件
+		SELECT filename
+		FROM
+		sourceInfo
+		EXCEPT
+		SELECT filename
+		FROM
+		backupInfo
+
+
+
+		要删除的文件夹
+		SELECT backupdir FROM backupdir
+		EXCEPT
+		SELECT sourcedir FROM sourcedir
+
+		文件交集md5验证 要被替换的交集文件 md5不同进行覆盖文件列表
+		SELECT filename
+		FROM
+		sourceInfo
+		WHERE EXISTS
+		(SELECT filename FROM backupInfo WHERE sourceInfo.filename=backupInfo.filename) 
+		AND NOT EXISTS(SELECT md5 FROM backupInfo WHERE sourceInfo.md5=backupInfo.md5)
+
+4.剩下的是逻辑设计 主要是文件的对比这块的设计
+主要是在数据库里面把需要删除的和增加的信息写出来然后 备份操作是提交操作的逆函数 把输入的参数反转一下就是还原了 
+
+不过还是要在恢复备份时候对对源文件列表进行一次清空后更新
+提交的时候也是对源文件列表进行一次清空后更新		
+
+脚本能力
+
+使用的多线程threading 提高了同时读写同一个函数的方法
+t = threading.Thread(target=getList,args=(dbPath,FilePath))
+t.start()
+
+代完善 
+
+对库里面的一些操作写入一个类里面 例如文件操作工具类
+还有就是对代码的混淆

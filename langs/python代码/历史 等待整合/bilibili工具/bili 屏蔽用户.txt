@@ -1,0 +1,39 @@
+Remote Address:183.61.9.45:80
+Request URL:http://interface.bilibili.com/dmblock?type=user&random=0%2E8832610547542572&ver=2&data=ddfcbd00&aid=770374
+Request Method:GET
+Status Code:200 OK
+Response Headers
+view source
+Access-Control-Allow-Credentials:true
+Connection:keep-alive
+Content-Encoding:gzip
+Content-Type:text/html; charset=UTF-8
+Date:Thu, 26 May 2016 08:08:15 GMT
+Server:Tengine
+Transfer-Encoding:chunked
+X-Account-Via:HIT from shd-app-6
+X-Cache:BYPASS from cn-gd-dx.hdslb.com
+X-TKID:1464250095479281147189
+Request Headers
+view source
+Accept:*/*
+Accept-Encoding:gzip, deflate, sdch
+Accept-Language:zh-CN,zh;q=0.8
+Connection:keep-alive
+Cookie:sid=57abvfk9; pgv_pvi=7589253120; fts=1462191616; LIVE_BUVID=8787b93f917aae36c65e937fce7737d2; LIVE_BUVID__ckMd5=2319ad4e49618239; DedeUserID=3228189; DedeUserID__ckMd5=f1ce281626dda023; SESSDATA=c094a393%2C1464783664%2C933e3eb6; LIVE_LOGIN_DATA=693f3ec6ec95b23141cc14b20871b7783e84c387; LIVE_LOGIN_DATA__ckMd5=92f309c6739f0be8; user_face=http%3A%2F%2Fi2.hdslb.com%2Fbfs%2Fface%2F5ff806479922a0da2a84712c2f5de0514dbfcf5d.jpg; pgv_si=s5105355776; rlc_time=1464247579681; DedeID=770374; time_tracker=20160526; _cnt_dyn=null; _cnt_pm=1; _cnt_notify=34; uTZ=-480; _dfcaptcha=c1343cd0522982dca29daf8104fb2c06
+Host:interface.bilibili.com
+User-Agent:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36
+X-Requested-With:ShockwaveFlash/21.0.0.182
+Query String Parameters
+view source
+view URL encoded
+type:user
+random:0.8832610547542572
+ver:2
+data:ddfcbd00
+aid:770374
+
+
+µ¯Ä»ÏÂÔØ ¹Ø¼ü×ÖÌåÆ¥Åä Ìí¼ÓÆÁ±Î
+
+µ¯Ä»ÏÂÔØ ¹Ø¼ü×ÖÌåÆ¥Åä Ìí¼ÓÆÁ±Î

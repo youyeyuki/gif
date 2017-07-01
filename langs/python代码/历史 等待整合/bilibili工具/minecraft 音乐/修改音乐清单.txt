@@ -1,0 +1,12 @@
+minecraft/sounds/records/blocks.ogg   | 替换音乐存放目录/1.7.10.json
+minecraft/sounds/records/stal.ogg     | 替换音乐存放目录/
+minecraft/sounds/records/far.ogg      | 替换音乐存放目录/
+minecraft/sounds/records/strad.ogg    | 替换音乐存放目录/
+minecraft/sounds/records/wait.ogg     | 替换音乐存放目录/
+minecraft/sounds/records/cat.ogg      | 替换音乐存放目录/
+minecraft/sounds/records/chirp.ogg    | 替换音乐存放目录/
+minecraft/sounds/records/mall.ogg     | 替换音乐存放目录/
+minecraft/sounds/records/mellohi.ogg  | 替换音乐存放目录/
+minecraft/sounds/records/ward.ogg     | 替换音乐存放目录/
+minecraft/sounds/records/13.ogg       | 替换音乐存放目录/
+minecraft/sounds/records/11.ogg       | 替换音乐存放目录/

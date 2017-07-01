@@ -1,0 +1,10 @@
+Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Encoding:gzip, deflate, sdch
+Accept-Language:zh-CN,zh;q=0.8
+Connection:keep-alive
+Cookie:td_cookie=18446744069530160656; SINAGLOBAL=4244484745431.6914.1456839711212; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WFEuj4q_ouCmEJFOzrBLQBP5JpX5KMt; SUHB=0P1dD_bKSZj6Fx; ALF=1489728276; ULV=1458192274777:11:11:3:1028536914382.1299.1458192274751:1458107743700; HAVAR=usrmdinst_3; _s_tentry=www.wooyun.org; UOR=www.3lian.com,widget.weibo.com,www.wooyun.org
+Host:widget.weibo.com
+If-Modified-Since:Fri, 18 Mar 2016 02:38:09 GMT
+Referer:http://www.wooyun.org/corps/
+Upgrade-Insecure-Requests:1
+User-Agent:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36 QIHU 360SE
